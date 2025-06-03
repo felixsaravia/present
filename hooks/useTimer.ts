@@ -18,10 +18,10 @@ const useTimer = (initialDurationSeconds: number = 0): TimerState => {
   const [targetDuration, setTargetDuration] = useState(initialDurationSeconds);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
+    let interval: number | null = null;
 
     if (isRunning && timeLeft > 0) {
-      interval = setInterval(() => {
+      interval = window.setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
     } else if (timeLeft === 0 && isRunning) {
