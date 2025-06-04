@@ -35,7 +35,7 @@ const NavItem: React.FC<{ to: string; label: string; icon: React.ReactNode }> = 
 };
 
 const App: React.FC = () => {
-  const DONATION_URL = "https://www.buymeacoffee.com/placeholder"; // Reemplaza 'placeholder' con tu usuario real
+  const DONATION_URL = "https://www.paypal.com/donate/?hosted_button_id=EVVDT5T489GUQ"; // Reemplaza 'placeholder' con tu usuario real
 
   return (
     <JournalProvider>
