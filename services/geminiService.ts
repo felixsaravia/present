@@ -66,20 +66,32 @@ export async function generatePresentNowActivity(): Promise<string> {
   }
 }
 
-export async function generatePresenceCheckinQuestions(count: number = 1): Promise<string[]> {
-  if (!API_KEY) return ["Error: API Key no configurada."];
+export async function generateMindfulnessImage(prompt: string): Promise<string> {
+  if (!API_KEY) return "Error: API Key no configurada.";
+  if (!prompt || prompt.trim() === "") {
+    return "Error: El prompt para la imagen no puede estar vacío.";
+  }
   try {
-    const prompt = `Genera ${count} pregunta${count > 1 ? 's' : ''} corta${count > 1 ? 's' : ''} y distinta${count > 1 ? 's' : ''} para fomentar la autorreflexión sobre el momento presente.
-    Cada pregunta debe estar en una nueva línea. No incluyas numeración ni viñetas.`;
-    
-    const response: GenerateContentResponse = await ai.models.generateContent({
-      model: GEMINI_TEXT_MODEL,
-      contents: prompt,
+    const response = await ai.models.generateImages({
+      model: 'imagen-3.0-generate-002', // Correct image generation model
+      prompt: prompt,
+      config: { numberOfImages: 1, outputMimeType: 'image/jpeg' },
     });
-    const text = response.text;
-    return text.split('\n').map(q => q.trim()).filter(q => q.length > 0);
+
+    if (response.generatedImages && response.generatedImages.length > 0 && response.generatedImages[0].image?.imageBytes) {
+      return response.generatedImages[0].image.imageBytes; // This is already a base64 string
+    } else {
+      console.error("Image generation response did not contain image data:", response);
+      return "No se pudo generar la imagen. La respuesta no contenía datos de imagen.";
+    }
   } catch (error) {
-    console.error("Error generating presence check-in questions:", error);
-    return ["No se pudieron generar preguntas. Intenta de nuevo."];
+    console.error("Error generating mindfulness image:", error);
+    // Check for specific error types if needed, e.g., prompt safety issues
+    if (error.message && error.message.includes('SAFETY')) {
+        return "No se pudo generar la imagen debido a restricciones de seguridad del prompt. Intenta con una idea diferente.";
+    }
+    return "No se pudo generar la imagen. Inténtalo de nuevo más tarde.";
   }
 }
+
+// generatePresenceCheckinQuestions function removed
