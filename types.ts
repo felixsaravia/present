@@ -18,6 +18,7 @@ export enum ExerciseFocus {
   BREATH = "Respiración",
   SOUNDS = "Sonidos del Entorno",
   SENSATIONS = "Sensaciones Físicas",
+  IMAGE_GENERATION = "Generación de Imagen", // Added new focus
 }
 
 export interface MindfulnessChallenge {
@@ -27,10 +28,7 @@ export interface MindfulnessChallenge {
   isCompleted: boolean;
 }
 
-export interface PresenceCheckinPrompt {
-  id: string;
-  question: string;
-}
+// PresenceCheckinPrompt interface removed
 
 export interface FocusGame {
   id: string;
