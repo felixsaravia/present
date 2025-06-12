@@ -1,67 +1,16 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useChallenges } from '../contexts/ChallengesContext';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { INITIAL_PRESENCE_CHECKIN_PROMPTS } from '../constants';
-import { PresenceCheckinPrompt } from '../types';
-import { generatePresenceCheckinQuestions } from '../services/geminiService';
+// Removed INITIAL_PRESENCE_CHECKIN_PROMPTS, PresenceCheckinPrompt, generatePresenceCheckinQuestions
 import PresentNow from '../components/PresentNow';
 
 
 const CheckIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>;
 const SparklesIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2 text-yellow-500"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L1.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.25 12L17 13.75M19.5 15l-1.25-1.75M19.5 15V12.5M19.5 15H17M12.75 18.25L11 17M5.25 6.75L4 5M18.75 3.75h.75M19.5 6.75v.75m0-.75L18 5.25m1.5 1.5H18.5" /></svg>;
 
-
-const PresenceCheckinCard: React.FC = () => {
-  const [currentPrompt, setCurrentPrompt] = useState<PresenceCheckinPrompt>(INITIAL_PRESENCE_CHECKIN_PROMPTS[0]);
-  const [isLoadingPrompt, setIsLoadingPrompt] = useState(false);
-  const [answer, setAnswer] = useState('');
-
-  const fetchNewPrompt = async () => {
-    setIsLoadingPrompt(true);
-    setAnswer(''); // Clear previous answer
-    const newQuestions = await generatePresenceCheckinQuestions(1);
-    if (newQuestions.length > 0 && !newQuestions[0].startsWith("Error")) {
-      setCurrentPrompt({ id: `gemini-${Date.now()}`, question: newQuestions[0] });
-    } else {
-      // Fallback to a random initial prompt if API fails
-      const randomIndex = Math.floor(Math.random() * INITIAL_PRESENCE_CHECKIN_PROMPTS.length);
-      setCurrentPrompt(INITIAL_PRESENCE_CHECKIN_PROMPTS[randomIndex]);
-    }
-    setIsLoadingPrompt(false);
-  };
-  
-  // Fetch one initial prompt from Gemini on mount.
-  useEffect(() => {
-    fetchNewPrompt();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return (
-    <div className="bg-white p-6 rounded-xl shadow-lg">
-      <h3 className="text-lg font-semibold text-sky-700 mb-3">Check-in de Presencia</h3>
-      {isLoadingPrompt ? <LoadingSpinner size="sm" /> : <p className="text-slate-700 mb-3">{currentPrompt.question}</p>}
-      <textarea
-        value={answer}
-        onChange={(e) => setAnswer(e.target.value)}
-        rows={2}
-        className="w-full p-2 border border-slate-300 rounded-md focus:ring-sky-500 focus:border-sky-500"
-        placeholder="Tu reflexión..."
-      />
-      <div className="mt-3 flex justify-end">
-        <button 
-          onClick={fetchNewPrompt}
-          disabled={isLoadingPrompt}
-          className="text-sky-600 hover:text-sky-800 font-medium text-sm py-2 px-3 rounded-md transition-colors disabled:opacity-50"
-        >
-          {isLoadingPrompt ? 'Cargando...' : 'Otra Pregunta'}
-        </button>
-      </div>
-    </div>
-  );
-};
-
+// PresenceCheckinCard component definition removed
 
 const HomePage: React.FC = () => {
   const { currentChallenge, isLoadingChallenge, challengeError, toggleChallengeCompletion, fetchNewChallenge } = useChallenges();
@@ -109,8 +58,8 @@ const HomePage: React.FC = () => {
         )}
       </section>
 
-      {/* Presence Check-in Section */}
-      <PresenceCheckinCard />
+      {/* Presence Check-in Section Removed */}
+      {/* <PresenceCheckinCard /> */}
 
       {/* Quick Links Section */}
       <section>
