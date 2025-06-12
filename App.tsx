@@ -15,14 +15,6 @@ const ExerciseIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" v
 const ChallengeIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.82m5.84-2.56a16.978 16.978 0 00-5.84-2.56M12 12A2.25 2.25 0 0114.25 14.25v4.82m-4.5 0V19.07a2.25 2.25 0 01-2.25-2.25c0-1.03.822-1.873 1.845-2.038M21.75 9.75A9 9 0 0012 3.75M3.25 9.75A9 9 0 0112 3.75m0 16.5V15" /></svg>;
 const FocusIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h3m-3 0V3.75A2.25 2.25 0 0112.75 1.5h.5A2.25 2.25 0 0115.5 3.75V6m-3 0h3m-3 0H7.5V3.75A2.25 2.25 0 005.25 1.5h-.5A2.25 2.25 0 002.5 3.75V6m3 0V9m6-3V9m-6 6h3m-3 0v3A2.25 2.25 0 007.5 22.5h.5a2.25 2.25 0 002.25-2.25V15m3 0h3m-3 0v3a2.25 2.25 0 012.25 2.25h.5a2.25 2.25 0 012.25-2.25V15m-3 0H16.5m0 0V9" /></svg>;
 const JournalIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>;
-const CoffeeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25h-15C3.672 8.25 3 8.922 3 9.75v6c0 .828.672 1.5 1.5 1.5h15c.828 0 1.5-.672 1.5-1.5v-6c0-.828-.672-1.5-1.5-1.5z" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 8.25V6a1.5 1.5 0 00-1.5-1.5h-6A1.5 1.5 0 007.5 6v2.25" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 11.25H21a1.5 1.5 0 010 3h-1.5" />
-  </svg>
-);
-
 
 const NavItem: React.FC<{ to: string; label: string; icon: React.ReactNode }> = ({ to, label, icon }) => {
   const location = useLocation();
@@ -49,17 +41,6 @@ const App: React.FC = () => {
             <header className="bg-white shadow-md sticky top-0 z-50">
               <div className="container mx-auto px-4 py-3 flex justify-between items-center">
                 <h1 className="text-2xl font-bold text-sky-700">Mindful Moments</h1>
-                <a
-                  href="https://coff.ee/netxlevel"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Invítame un café"
-                  className="flex items-center space-x-1.5 px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs sm:text-sm font-medium rounded-full shadow-sm transition-colors duration-150 ease-in-out"
-                  aria-label="Apóyame con un café"
-                >
-                  <CoffeeIcon />
-                  <span>Apóyame</span>
-                </a>
               </div>
             </header>
 
