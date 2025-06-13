@@ -16,15 +16,9 @@ const ChallengeIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" 
 const FocusIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h3m-3 0V3.75A2.25 2.25 0 0112.75 1.5h.5A2.25 2.25 0 0115.5 3.75V6m-3 0h3m-3 0H7.5V3.75A2.25 2.25 0 005.25 1.5h-.5A2.25 2.25 0 002.5 3.75V6m3 0V9m6-3V9m-6 6h3m-3 0v3A2.25 2.25 0 007.5 22.5h.5a2.25 2.25 0 002.25-2.25V15m3 0h3m-3 0v3a2.25 2.25 0 012.25 2.25h.5a2.25 2.25 0 012.25-2.25V15m-3 0H16.5m0 0V9" /></svg>;
 const JournalIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>;
 
-<<<<<<< HEAD
 const CoffeeIcon = () => ( // Using a coffee cup icon for Ko-fi
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5h3m-6.75 0V11.25L7.5 6.75h9l.75 4.5V19.5h-3M7.5 6.75h9M7.5 6.75c0-1.5 1.5-3 3-3h3c1.5 0 3 1.5 3 3M7.5 6.75c0 1.5-1.5 3-3 3M16.5 6.75c0 1.5 1.5 3 3 3" />
-=======
-const CreditCardIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 21z" />
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
   </svg>
 );
 
@@ -55,7 +49,6 @@ const App: React.FC = () => {
               <div className="container mx-auto px-4 py-3 flex justify-between items-center">
                 <h1 className="text-2xl font-bold text-white">Mindful Moments</h1>
                 <a
-<<<<<<< HEAD
                   href="https://ko-fi.com/nextlevelsv"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -65,17 +58,6 @@ const App: React.FC = () => {
                 >
                   <CoffeeIcon /> 
                   <span>Invítame un café</span>
-=======
-                  href="https://www.paypal.com/donate/?hosted_button_id=EVVDT5T489GUQ"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Donar con PayPal"
-                  className="flex items-center space-x-1.5 px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white text-xs sm:text-sm font-medium rounded-full shadow-sm transition-colors duration-150 ease-in-out"
-                  aria-label="Donar con PayPal"
-                >
-                  <CreditCardIcon />
-                  <span>Donar con PayPal</span>
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
                 </a>
               </div>
             </header>

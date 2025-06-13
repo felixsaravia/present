@@ -58,12 +58,6 @@ const HomePage: React.FC = () => {
         )}
       </section>
 
-<<<<<<< HEAD
-=======
-      {/* Presence Check-in Section Removed */}
-      {/* <PresenceCheckinCard /> */}
-
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
       {/* Quick Links Section */}
       <section>
         <h3 className="text-xl font-semibold text-slate-700 mb-4">Explora</h3>

@@ -40,11 +40,7 @@ const ContextualFocusExercise: React.FC = () => {
   }
 
   return (
-<<<<<<< HEAD
     <div className="p-4 sm:p-6 bg-white rounded-xl border border-slate-200 text-center max-w-lg mx-auto">
-=======
-    <div className="p-4 sm:p-6 bg-white rounded-xl shadow-xl text-center max-w-lg mx-auto">
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
       <h3 className="text-2xl font-semibold text-sky-700 mb-3">Enfoque Contextual</h3>
       <p className="text-slate-600 mb-6">
         Describe dónde estás o qué estás haciendo. Recibirás un ejercicio corto y simple para ayudarte a centrarte en el momento presente.
@@ -59,11 +55,7 @@ const ContextualFocusExercise: React.FC = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
-<<<<<<< HEAD
               className="w-full p-3 border border-slate-300 rounded-lg focus:ring-1 focus:ring-sky-500 focus:border-sky-500 transition-colors"
-=======
-              className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-shadow shadow-sm focus:shadow-md"
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
               placeholder="Ej: Estoy en mi escritorio, preparándome para una reunión importante..."
               aria-label="Describe tu situación actual"
             />
@@ -71,11 +63,7 @@ const ContextualFocusExercise: React.FC = () => {
           <button
             onClick={handleGenerateExercise}
             disabled={isLoading || !description.trim()}
-<<<<<<< HEAD
             className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
-=======
-            className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg text-lg shadow-md hover:shadow-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed"
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
           >
             {isLoading ? 'Generando...' : 'Generar Ejercicio'}
           </button>
@@ -108,11 +96,7 @@ const ContextualFocusExercise: React.FC = () => {
           </p>
           <button
             onClick={handleReset}
-<<<<<<< HEAD
             className="mt-6 w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-2.5 px-5 rounded-lg transition-colors"
-=======
-            className="mt-6 w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-2.5 px-5 rounded-lg shadow-md hover:shadow-lg transition-all"
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
           >
             Crear Otro Ejercicio
           </button>

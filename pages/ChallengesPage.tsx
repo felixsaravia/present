@@ -15,27 +15,15 @@ const ChallengesPage: React.FC = () => {
     challengeError, 
     toggleChallengeCompletion, 
     fetchNewChallenge,
-<<<<<<< HEAD
     currentSystemDate 
-=======
-    currentSystemDate // Use the date from context
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
   } = useChallenges();
   
   const [allChallenges] = useLocalStorage<MindfulnessChallenge[]>('mindfulnessChallenges', []);
 
-<<<<<<< HEAD
   const todayDateForDisplay = currentSystemDate; 
 
   const sortedChallenges = [...allChallenges]
     .filter(c => !c.id.startsWith("error-")) 
-=======
-  // Use currentSystemDate from context as the source of truth for "today"
-  const todayDateForDisplay = currentSystemDate; 
-
-  const sortedChallenges = [...allChallenges]
-    .filter(c => !c.id.startsWith("error-")) // Don't show error placeholders in history
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   
   const isCurrentChallengeValid = currentChallenge && !currentChallenge.id.startsWith("error-") && !challengeError;
@@ -70,10 +58,6 @@ const ChallengesPage: React.FC = () => {
           </div>
         )}
 
-<<<<<<< HEAD
-=======
-         {/* Show if no valid challenge, not loading, but there might be an error message already shown OR it's an error placeholder */}
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
          {((!currentChallenge && !isLoadingChallenge && !challengeError) || (currentChallenge && currentChallenge.id.startsWith("error-") && !isLoadingChallenge && !challengeError)) && (
           <div className="text-center">
             <p className="text-slate-500 mb-3">No se pudo cargar el reto de hoy.</p>
@@ -93,11 +77,7 @@ const ChallengesPage: React.FC = () => {
         {sortedChallenges.length > 0 ? (
           <div className="space-y-4">
             {sortedChallenges.filter(c => c.date !== todayDateForDisplay).map((challenge) => (
-<<<<<<< HEAD
               <div key={challenge.id} className={`p-4 rounded-lg ${challenge.isCompleted ? 'bg-emerald-50 border-l-4 border-emerald-400' : 'bg-slate-50 border-l-4 border-slate-300'}`}>
-=======
-              <div key={challenge.id} className={`p-4 rounded-lg shadow ${challenge.isCompleted ? 'bg-emerald-50 border-l-4 border-emerald-400' : 'bg-white border-l-4 border-slate-300'}`}>
->>>>>>> ace3b414d453679bcf2f1058b3efcd60946ebab4
                 <p className="text-xs text-slate-500 mb-1">{new Date(challenge.date + 'T00:00:00').toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 <p className="text-slate-700 mb-2">{challenge.description}</p>
                 {challenge.isCompleted && (
