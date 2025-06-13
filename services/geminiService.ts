@@ -66,32 +66,25 @@ export async function generatePresentNowActivity(): Promise<string> {
   }
 }
 
-export async function generateMindfulnessImage(prompt: string): Promise<string> {
+export async function generateContextualFocusExercise(contextDescription: string): Promise<string> {
   if (!API_KEY) return "Error: API Key no configurada.";
-  if (!prompt || prompt.trim() === "") {
-    return "Error: El prompt para la imagen no puede estar vacío.";
+  if (!contextDescription || contextDescription.trim() === "") {
+    return "Error: La descripción del contexto no puede estar vacía.";
   }
   try {
-    const response = await ai.models.generateImages({
-      model: 'imagen-3.0-generate-002', // Correct image generation model
-      prompt: prompt,
-      config: { numberOfImages: 1, outputMimeType: 'image/jpeg' },
+    const prompt = `Eres un guía de mindfulness experto. Un usuario describe su situación actual de la siguiente manera: "${contextDescription}". Tu tarea es generar un ejercicio de mindfulness corto y práctico (de 1 a 2 minutos como máximo) que el usuario pueda realizar en ese contexto específico. Las instrucciones deben ser claras, concisas, paso a paso, y muy fáciles de seguir. No incluyas títulos, saludos, ni frases introductorias como "Aquí tienes un ejercicio:". Solo proporciona las instrucciones directas del ejercicio. Asegúrate de que el ejercicio sea relevante para la descripción proporcionada.`;
+    
+    const response: GenerateContentResponse = await ai.models.generateContent({
+      model: GEMINI_TEXT_MODEL,
+      contents: prompt,
+      config: { thinkingConfig: { thinkingBudget: 0 } } // For faster response
     });
-
-    if (response.generatedImages && response.generatedImages.length > 0 && response.generatedImages[0].image?.imageBytes) {
-      return response.generatedImages[0].image.imageBytes; // This is already a base64 string
-    } else {
-      console.error("Image generation response did not contain image data:", response);
-      return "No se pudo generar la imagen. La respuesta no contenía datos de imagen.";
-    }
+    return response.text;
   } catch (error) {
-    console.error("Error generating mindfulness image:", error);
-    // Check for specific error types if needed, e.g., prompt safety issues
-    if (error.message && error.message.includes('SAFETY')) {
-        return "No se pudo generar la imagen debido a restricciones de seguridad del prompt. Intenta con una idea diferente.";
-    }
-    return "No se pudo generar la imagen. Inténtalo de nuevo más tarde.";
+    console.error("Error generating contextual focus exercise:", error);
+    return "No se pudo generar el ejercicio de enfoque contextual. Inténtalo de nuevo más tarde.";
   }
 }
 
 // generatePresenceCheckinQuestions function removed
+// generateMindfulnessImage function removed

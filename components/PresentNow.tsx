@@ -10,7 +10,7 @@ const PresentNow: React.FC = () => {
   const [activity, setActivity] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { timeLeft, isRunning, isFinished, start, reset } = useTimer(); // Duration will be ~1 min
+  const { timeLeft, isRunning, isFinished, start, reset } = useTimer(); 
 
   const handleOpenModal = async () => {
     setIsModalOpen(true);
@@ -24,7 +24,7 @@ const PresentNow: React.FC = () => {
         setError(generatedActivity);
       } else {
         setActivity(generatedActivity);
-        start(60); // Start a 1-minute timer
+        start(60); 
       }
     } catch (err) {
       setError("Error al cargar la actividad.");
@@ -51,7 +51,7 @@ const PresentNow: React.FC = () => {
     <>
       <button
         onClick={handleOpenModal}
-        className="fixed bottom-24 right-4 sm:bottom-20 sm:right-6 bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-3 rounded-full shadow-lg transition-transform hover:scale-105 z-40 flex items-center justify-center"
+        className="fixed bottom-24 right-4 sm:bottom-20 sm:right-6 bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-3 rounded-full transition-transform hover:scale-105 z-40 flex items-center justify-center"
         title="Presente Ahora"
       >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">

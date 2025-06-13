@@ -16,15 +16,22 @@ const ChallengeIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" 
 const FocusIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h3m-3 0V3.75A2.25 2.25 0 0112.75 1.5h.5A2.25 2.25 0 0115.5 3.75V6m-3 0h3m-3 0H7.5V3.75A2.25 2.25 0 005.25 1.5h-.5A2.25 2.25 0 002.5 3.75V6m3 0V9m6-3V9m-6 6h3m-3 0v3A2.25 2.25 0 007.5 22.5h.5a2.25 2.25 0 002.25-2.25V15m3 0h3m-3 0v3a2.25 2.25 0 012.25 2.25h.5a2.25 2.25 0 012.25-2.25V15m-3 0H16.5m0 0V9" /></svg>;
 const JournalIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>;
 
+const CoffeeIcon = () => ( // Using a coffee cup icon for Ko-fi
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5h3m-6.75 0V11.25L7.5 6.75h9l.75 4.5V19.5h-3M7.5 6.75h9M7.5 6.75c0-1.5 1.5-3 3-3h3c1.5 0 3 1.5 3 3M7.5 6.75c0 1.5-1.5 3-3 3M16.5 6.75c0 1.5 1.5 3 3 3" />
+  </svg>
+);
+
+
 const NavItem: React.FC<{ to: string; label: string; icon: React.ReactNode }> = ({ to, label, icon }) => {
   const location = useLocation();
-  const isActive = location.pathname === to || (to === "/" && location.pathname.startsWith("/#")); // Fix for HashRouter initial load
+  const isActive = location.pathname === to || (to === "/" && location.pathname.startsWith("/#"));
 
   return (
     <Link
       to={to}
       className={`flex flex-col items-center justify-center px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
-                  ${isActive ? 'text-sky-600 bg-sky-100' : 'text-slate-600 hover:text-sky-500 hover:bg-slate-200'}`}
+                  ${isActive ? 'text-white bg-sky-500' : 'text-slate-600 hover:text-sky-600 hover:bg-sky-50'}`}
     >
       {icon}
       <span className="mt-1">{label}</span>
@@ -38,9 +45,20 @@ const App: React.FC = () => {
       <ChallengesProvider>
         <HashRouter>
           <div className="flex flex-col min-h-screen">
-            <header className="bg-white shadow-md sticky top-0 z-50">
+            <header className="bg-sky-600 sticky top-0 z-50">
               <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-                <h1 className="text-2xl font-bold text-sky-700">Mindful Moments</h1>
+                <h1 className="text-2xl font-bold text-white">Mindful Moments</h1>
+                <a
+                  href="https://ko-fi.com/nextlevelsv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Invítame un café en Ko-fi"
+                  className="flex items-center space-x-1.5 px-3 py-1.5 bg-white hover:bg-sky-50 text-sky-700 text-xs sm:text-sm font-medium rounded-full transition-colors duration-150 ease-in-out"
+                  aria-label="Invítame un café en Ko-fi"
+                >
+                  <CoffeeIcon /> 
+                  <span>Invítame un café</span>
+                </a>
               </div>
             </header>
 
@@ -54,7 +72,7 @@ const App: React.FC = () => {
               </Routes>
             </main>
 
-            <nav className="bg-white shadow-t border-t border-slate-200 sticky bottom-0 z-50">
+            <nav className="bg-white sticky bottom-0 z-50">
               <div className="container mx-auto px-2 sm:px-4 py-2 flex justify-around">
                 <NavItem to="/" label="Inicio" icon={<HomeIcon />} />
                 <NavItem to="/exercises" label="Ejercicios" icon={<ExerciseIcon />} />

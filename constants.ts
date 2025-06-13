@@ -11,5 +11,6 @@ export const DEFAULT_EXERCISE_DURATIONS = [1, 2, 3, 4, 5]; // minutes
 export const FOCUS_GAME_MOVING_DOT_ID = "moving-dot";
 export const FOCUS_GAME_SEQUENCE_MEMORY_ID = "sequence-memory";
 export const FOCUS_GAME_REACTION_ID = "reaction-visual";
+export const FOCUS_GAME_CONTEXTUAL_ID = "contextual-focus"; // New game ID
 
 export const GEMINI_TEXT_MODEL = "gemini-2.5-flash-preview-04-17";

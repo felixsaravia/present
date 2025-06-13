@@ -19,12 +19,12 @@ const HomePage: React.FC = () => {
     <div className="space-y-8">
       <PresentNow />
       <header className="text-center">
-        <h2 className="text-3xl font-bold text-slate-800 mb-2">Bienvenido/a a Mindful Moments</h2>
+        <h2 className="text-3xl font-bold text-slate-800 mb-2">Bienvenido a Mindful Moments</h2>
         <p className="text-lg text-slate-600">Tu espacio para encontrar calma y claridad en el día a día.</p>
       </header>
 
       {/* Daily Challenge Section */}
-      <section className="bg-white p-6 rounded-xl shadow-lg">
+      <section className="bg-white p-6 rounded-xl border border-slate-200">
         <h3 className="text-xl font-semibold text-sky-700 mb-3 flex items-center">
           <SparklesIcon /> Reto de Atención Plena del Día
         </h3>
@@ -58,26 +58,23 @@ const HomePage: React.FC = () => {
         )}
       </section>
 
-      {/* Presence Check-in Section Removed */}
-      {/* <PresenceCheckinCard /> */}
-
       {/* Quick Links Section */}
       <section>
         <h3 className="text-xl font-semibold text-slate-700 mb-4">Explora</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Link to="/exercises" className="block p-6 bg-sky-500 hover:bg-sky-600 text-white rounded-xl shadow-lg transition-all hover:shadow-xl transform hover:-translate-y-1">
+          <Link to="/exercises" className="block p-6 bg-sky-500 hover:bg-sky-600 text-white rounded-xl transition-all transform hover:-translate-y-1">
             <h4 className="text-lg font-semibold mb-1">Ejercicios Guiados</h4>
             <p className="text-sm opacity-90">Encuentra calma con nuestras prácticas de 1-5 minutos.</p>
           </Link>
-          <Link to="/focus" className="block p-6 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl shadow-lg transition-all hover:shadow-xl transform hover:-translate-y-1">
+          <Link to="/focus" className="block p-6 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl transition-all transform hover:-translate-y-1">
             <h4 className="text-lg font-semibold mb-1">Entrenamiento del Enfoque</h4>
             <p className="text-sm opacity-90">Juegos para mejorar tu concentración.</p>
           </Link>
-          <Link to="/journal" className="block p-6 bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow-lg transition-all hover:shadow-xl transform hover:-translate-y-1">
+          <Link to="/journal" className="block p-6 bg-amber-500 hover:bg-amber-600 text-white rounded-xl transition-all transform hover:-translate-y-1">
             <h4 className="text-lg font-semibold mb-1">Bitácora del Presente</h4>
             <p className="text-sm opacity-90">Conecta con tus pensamientos y emociones.</p>
           </Link>
-           <Link to="/challenges" className="block p-6 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl shadow-lg transition-all hover:shadow-xl transform hover:-translate-y-1">
+           <Link to="/challenges" className="block p-6 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl transition-all transform hover:-translate-y-1">
             <h4 className="text-lg font-semibold mb-1">Ver todos los Retos</h4>
             <p className="text-sm opacity-90">Revisa tus desafíos de atención plena.</p>
           </Link>

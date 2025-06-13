@@ -5,7 +5,7 @@ import { JournalEntry } from '../types';
 
 const JournalEntryCard: React.FC<{ entry: JournalEntry, onDelete: (id: string) => void }> = ({ entry, onDelete }) => {
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-amber-400">
+    <div className="bg-white p-4 rounded-lg border-l-4 border-amber-400">
       <div className="flex justify-between items-start mb-2">
         <p className="text-xs text-slate-500">
           {new Date(entry.timestamp).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -41,7 +41,7 @@ const JournalPage: React.FC = () => {
     addEntry(currentDoing, currentFeeling);
     setCurrentDoing('');
     setCurrentFeeling('');
-    setShowForm(false); // Hide form after submission
+    setShowForm(false); 
   };
 
   return (
@@ -55,7 +55,7 @@ const JournalPage: React.FC = () => {
          <div className="text-center mb-8">
             <button
             onClick={() => setShowForm(true)}
-            className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg text-lg shadow-md hover:shadow-lg transition-all"
+            className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors"
             >
             + Nueva Entrada
             </button>
@@ -63,7 +63,7 @@ const JournalPage: React.FC = () => {
       )}
       
       {showForm && (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-xl mb-8 space-y-4">
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl border border-slate-200 mb-8 space-y-4">
           <div>
             <label htmlFor="doing" className="block text-sm font-medium text-slate-700 mb-1">
               ¿Qué estoy haciendo ahora?
@@ -73,7 +73,7 @@ const JournalPage: React.FC = () => {
               value={currentDoing}
               onChange={(e) => setCurrentDoing(e.target.value)}
               rows={3}
-              className="w-full p-2 border border-slate-300 rounded-md focus:ring-amber-500 focus:border-amber-500"
+              className="w-full p-2 border border-slate-300 rounded-md focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
               placeholder="Ej: Tomando un café, escuchando música, trabajando..."
             />
           </div>
@@ -86,7 +86,7 @@ const JournalPage: React.FC = () => {
               value={currentFeeling}
               onChange={(e) => setCurrentFeeling(e.target.value)}
               rows={3}
-              className="w-full p-2 border border-slate-300 rounded-md focus:ring-amber-500 focus:border-amber-500"
+              className="w-full p-2 border border-slate-300 rounded-md focus:ring-1 focus:ring-amber-500 focus:border-amber-500"
               placeholder="Ej: Calma, ansiedad, curiosidad, gratitud..."
             />
           </div>
@@ -100,7 +100,7 @@ const JournalPage: React.FC = () => {
             </button>
             <button
               type="submit"
-              className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-5 rounded-md shadow hover:shadow-md transition-all"
+              className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-5 rounded-md transition-colors"
             >
               Guardar Entrada
             </button>
@@ -117,7 +117,7 @@ const JournalPage: React.FC = () => {
             ))}
           </div>
         ) : (
-          <p className="text-slate-500 text-center py-6 bg-white rounded-lg shadow">
+          <p className="text-slate-500 text-center py-6 bg-white rounded-lg border border-slate-200">
             Aún no has añadido ninguna entrada a tu bitácora. ¡Anímate a registrar tu momento presente!
           </p>
         )}

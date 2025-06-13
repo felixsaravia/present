@@ -18,7 +18,7 @@ export enum ExerciseFocus {
   BREATH = "Respiración",
   SOUNDS = "Sonidos del Entorno",
   SENSATIONS = "Sensaciones Físicas",
-  IMAGE_GENERATION = "Generación de Imagen", // Added new focus
+  // IMAGE_GENERATION = "Generación de Imagen", // Removed
 }
 
 export interface MindfulnessChallenge {

@@ -15,8 +15,8 @@ const SequenceMemoryGame: React.FC = () => {
   const [score, setScore] = useState(0);
 
   const { timeLeft, start: startTimer, reset: resetTimer, isFinished: timerIsFinished } = useTimer();
-  const SHOW_TIME_PER_ITEM_MS = 1000; // 1 second per item in sequence
-  const RECALL_TIME_BASE_MS = 5000; // 5 seconds base + per item
+  const SHOW_TIME_PER_ITEM_MS = 1000; 
+  const RECALL_TIME_BASE_MS = 5000; 
   const RECALL_TIME_PER_ITEM_MS = 1000;
 
   const startGame = () => {
@@ -28,7 +28,7 @@ const SequenceMemoryGame: React.FC = () => {
   const startLevel = (currentLevel: number) => {
     setMessage('');
     setUserInput('');
-    const newSequence = generateSequence(currentLevel + 2); // Level 1 starts with 3 items
+    const newSequence = generateSequence(currentLevel + 2); 
     setSequence(newSequence);
     setGameState('showing');
     startTimer(Math.ceil(newSequence.length * SHOW_TIME_PER_ITEM_MS / 1000));
@@ -37,19 +37,18 @@ const SequenceMemoryGame: React.FC = () => {
   useEffect(() => {
     if (gameState === 'showing' && timerIsFinished) {
       setGameState('recalling');
-      resetTimer(); // Important to reset timer state
+      resetTimer(); 
       startTimer(Math.ceil((RECALL_TIME_BASE_MS + sequence.length * RECALL_TIME_PER_ITEM_MS) / 1000));
       setMessage('Ahora, escribe la secuencia que recuerdas.');
     } else if (gameState === 'recalling' && timerIsFinished) {
-      checkSequence(); // Time's up for recall
+      checkSequence(); 
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timerIsFinished, gameState]);
+  }, [timerIsFinished, gameState, sequence.length, resetTimer, startTimer]);
 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (gameState === 'recalling') {
-      setUserInput(e.target.value.replace(/[^0-9]/g, '')); // Allow only numbers
+      setUserInput(e.target.value.replace(/[^0-9]/g, '')); 
     }
   };
 
@@ -64,7 +63,6 @@ const SequenceMemoryGame: React.FC = () => {
       setLevel(prevLevel => prevLevel + 1);
     } else {
       setMessage(`Incorrecto. La secuencia era: ${sequence.join(' ')}. Tu puntuación: ${score}.`);
-      // Game over, option to restart
       setTimeout(() => setGameState('idle'), 3000);
     }
   };
@@ -77,14 +75,14 @@ const SequenceMemoryGame: React.FC = () => {
 
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow-xl text-center">
+    <div className="p-6 bg-white rounded-xl border border-slate-200 text-center">
       <h3 className="text-xl font-semibold text-sky-700 mb-2">Juego: Memoria de Secuencia</h3>
       <p className="text-slate-600 mb-4">Memoriza la secuencia de números que aparece.</p>
 
       {gameState === 'idle' && (
         <button
           onClick={startGame}
-          className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-6 rounded-lg text-lg shadow-md"
+          className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-6 rounded-lg text-lg"
         >
           Comenzar Juego
         </button>
@@ -109,13 +107,13 @@ const SequenceMemoryGame: React.FC = () => {
             type="text"
             value={userInput}
             onChange={handleInputChange}
-            className="w-full max-w-xs mx-auto p-3 border border-slate-300 rounded-md text-2xl text-center tracking-widest focus:ring-sky-500 focus:border-sky-500"
+            className="w-full max-w-xs mx-auto p-3 border border-slate-300 rounded-md text-2xl text-center tracking-widest focus:ring-1 focus:ring-sky-500 focus:border-sky-500"
             placeholder="Escribe la secuencia"
-            maxLength={sequence.length + 2} // Allow a bit more for typos
+            maxLength={sequence.length + 2} 
           />
           <button
             onClick={checkSequence}
-            className="mt-4 bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-6 rounded-lg shadow-md"
+            className="mt-4 bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-6 rounded-lg"
           >
             Comprobar
           </button>

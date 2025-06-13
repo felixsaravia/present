@@ -15,16 +15,15 @@ const ChallengesPage: React.FC = () => {
     challengeError, 
     toggleChallengeCompletion, 
     fetchNewChallenge,
-    currentSystemDate // Use the date from context
+    currentSystemDate 
   } = useChallenges();
   
   const [allChallenges] = useLocalStorage<MindfulnessChallenge[]>('mindfulnessChallenges', []);
 
-  // Use currentSystemDate from context as the source of truth for "today"
   const todayDateForDisplay = currentSystemDate; 
 
   const sortedChallenges = [...allChallenges]
-    .filter(c => !c.id.startsWith("error-")) // Don't show error placeholders in history
+    .filter(c => !c.id.startsWith("error-")) 
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   
   const isCurrentChallengeValid = currentChallenge && !currentChallenge.id.startsWith("error-") && !challengeError;
@@ -34,7 +33,7 @@ const ChallengesPage: React.FC = () => {
       <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">Retos de Atención Plena</h2>
 
       {/* Current Day's Challenge */}
-      <section className="bg-white p-6 rounded-xl shadow-xl mb-8">
+      <section className="bg-white p-6 rounded-xl border border-slate-200 mb-8">
         <h3 className="text-xl font-semibold text-sky-700 mb-3 flex items-center">
             <SparklesIcon /> Reto de Hoy ({new Date(todayDateForDisplay + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })})
         </h3>
@@ -59,7 +58,6 @@ const ChallengesPage: React.FC = () => {
           </div>
         )}
 
-         {/* Show if no valid challenge, not loading, but there might be an error message already shown OR it's an error placeholder */}
          {((!currentChallenge && !isLoadingChallenge && !challengeError) || (currentChallenge && currentChallenge.id.startsWith("error-") && !isLoadingChallenge && !challengeError)) && (
           <div className="text-center">
             <p className="text-slate-500 mb-3">No se pudo cargar el reto de hoy.</p>
@@ -79,7 +77,7 @@ const ChallengesPage: React.FC = () => {
         {sortedChallenges.length > 0 ? (
           <div className="space-y-4">
             {sortedChallenges.filter(c => c.date !== todayDateForDisplay).map((challenge) => (
-              <div key={challenge.id} className={`p-4 rounded-lg shadow ${challenge.isCompleted ? 'bg-emerald-50 border-l-4 border-emerald-400' : 'bg-white border-l-4 border-slate-300'}`}>
+              <div key={challenge.id} className={`p-4 rounded-lg ${challenge.isCompleted ? 'bg-emerald-50 border-l-4 border-emerald-400' : 'bg-slate-50 border-l-4 border-slate-300'}`}>
                 <p className="text-xs text-slate-500 mb-1">{new Date(challenge.date + 'T00:00:00').toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 <p className="text-slate-700 mb-2">{challenge.description}</p>
                 {challenge.isCompleted && (
