@@ -86,5 +86,25 @@ export async function generateContextualFocusExercise(contextDescription: string
   }
 }
 
+export async function generateDynamicMeditation(userInput: string, durationMinutes: number): Promise<string> {
+  if (!API_KEY) return "Error: API Key no configurada.";
+  try {
+    const prompt = `Genera un guion de meditación guiada de ${durationMinutes} minutos. El usuario describe su necesidad actual como: "${userInput}".
+La meditación debe ser personalizada y adaptada a esta descripción.
+Proporciona instrucciones claras, paso a paso, con un tono calmado y de apoyo.
+El resultado debe ser un solo bloque de texto coherente, listo para ser leído en voz alta.
+No incluyas títulos ni frases introductorias como "Aquí tienes tu meditación:" o "Meditación para ${userInput}:". Solo el guion puro de la meditación.`;
+
+    const response: GenerateContentResponse = await ai.models.generateContent({
+      model: GEMINI_TEXT_MODEL,
+      contents: prompt,
+    });
+    return response.text;
+  } catch (error) {
+    console.error("Error generating dynamic meditation:", error);
+    return "No se pudo generar la meditación dinámica. Inténtalo de nuevo más tarde.";
+  }
+}
+
 // generatePresenceCheckinQuestions function removed
 // generateMindfulnessImage function removed
