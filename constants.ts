@@ -1,4 +1,3 @@
-
 // Removed import for PresenceCheckinPrompt 
 
 export const APP_NAME = "Mindful Moments";
@@ -13,4 +12,4 @@ export const FOCUS_GAME_SEQUENCE_MEMORY_ID = "sequence-memory";
 export const FOCUS_GAME_REACTION_ID = "reaction-visual";
 export const FOCUS_GAME_CONTEXTUAL_ID = "contextual-focus"; // New game ID
 
-export const GEMINI_TEXT_MODEL = "gemini-2.5-flash-preview-04-17";
+export const GEMINI_TEXT_MODEL = "gemini-2.5-flash";
