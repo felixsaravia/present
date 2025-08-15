@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { OBSERVER_MODE_REMINDERS, APP_ICON_DATA_URI, REMINDER_FREQUENCIES, DEFAULT_REMINDER_FREQUENCY } from '../constants';
 
@@ -29,33 +28,40 @@ const MindfulReminder: React.FC = () => {
     }
   };
 
-  const sendNotification = useCallback(() => {
-    if (permission === 'granted') {
-      const randomIndex = Math.floor(Math.random() * OBSERVER_MODE_REMINDERS.length);
-      const randomReminder = OBSERVER_MODE_REMINDERS[randomIndex];
-      new Notification('Observador Silencioso', {
-        body: randomReminder,
-        icon: APP_ICON_DATA_URI,
-        silent: true,
-      });
-    }
-  }, [permission]);
-
   useEffect(() => {
-    if (remindersEnabled && permission === 'granted') {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      // Send one immediately for feedback when enabled or frequency changes
-      sendNotification();
-       // Set a new interval based on selected frequency
-      intervalRef.current = window.setInterval(sendNotification, frequency);
-    } else {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+    // La lógica para enviar notificaciones ahora está autocontenida dentro del efecto.
+    const sendNotification = () => {
+      // Verificamos directamente el permiso global para mayor robustez.
+      if (Notification.permission === 'granted') {
+        const randomIndex = Math.floor(Math.random() * OBSERVER_MODE_REMINDERS.length);
+        const randomReminder = OBSERVER_MODE_REMINDERS[randomIndex];
+        new Notification('Observador Silencioso', {
+          body: randomReminder,
+          icon: APP_ICON_DATA_URI,
+          silent: true,
+        });
+      }
+    };
+
+    // Siempre se limpia el intervalo anterior cuando este efecto se vuelve a ejecutar.
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
     }
 
+    if (remindersEnabled && permission === 'granted') {
+      // Se establece un nuevo intervalo. Se eliminó la notificación inmediata ya que
+      // era la fuente probable del fallo. La primera notificación aparecerá después de un intervalo.
+      intervalRef.current = window.setInterval(sendNotification, frequency);
+    }
+
+    // La función de limpieza asegura que el intervalo se elimine al desmontar o cuando cambian las dependencias.
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
-  }, [remindersEnabled, permission, frequency, sendNotification]);
+  }, [remindersEnabled, permission, frequency]);
+
 
   const handleToggle = () => {
     if (permission === 'default') {
@@ -82,7 +88,7 @@ const MindfulReminder: React.FC = () => {
   const buttonState = getButtonState();
 
   if (!('Notification' in window)) {
-      return null; // Don't render component if notifications are not supported
+      return null; // No renderizar el componente si las notificaciones no son compatibles
   }
 
   return (

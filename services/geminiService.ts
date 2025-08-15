@@ -106,5 +106,27 @@ No incluyas títulos ni frases introductorias como "Aquí tienes tu meditación:
   }
 }
 
+export async function generateEgoReflection(situation: string): Promise<string> {
+  if (!API_KEY) return "Error: API Key no configurada.";
+  try {
+    const prompt = `Actúa como un guía de mindfulness compasivo y sabio. Un usuario está lidiando con una reacción de su ego. La situación que describe es: "${situation}". 
+Tu tarea es proporcionar una reflexión breve (2-3 párrafos como máximo) y amable para ayudarle a:
+1. Observar sus pensamientos y sentimientos sin juicio.
+2. Reconocer la reacción del ego sin identificarse con ella.
+3. Encontrar una perspectiva más amplia, tranquila y desapegada.
+Usa un tono de apoyo, gentil y no prescriptivo. No des órdenes ni lecciones. El objetivo es la auto-observación y la compasión, no la autocrítica.
+El resultado debe ser un solo bloque de texto. No incluyas títulos, saludos ni frases como "Aquí tienes una reflexión:".`;
+    
+    const response: GenerateContentResponse = await ai.models.generateContent({
+      model: GEMINI_TEXT_MODEL,
+      contents: prompt,
+    });
+    return response.text;
+  } catch (error) {
+    console.error("Error generating ego reflection:", error);
+    return "No se pudo generar la reflexión. Inténtalo de nuevo más tarde.";
+  }
+}
+
 // generatePresenceCheckinQuestions function removed
 // generateMindfulnessImage function removed

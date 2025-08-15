@@ -18,7 +18,8 @@ export enum ExerciseFocus {
   BREATH = "Respiración",
   SOUNDS = "Sonidos del Entorno",
   SENSATIONS = "Sensaciones Físicas",
-  DYNAMIC_MEDITATION = "Meditación Dinámica Personalizada", // Nueva opción
+  DYNAMIC_MEDITATION = "Meditación Dinámica Personalizada",
+  EGO_REFLECTION = "Reflexión del Ego", // Nueva opción
 }
 
 export interface MindfulnessChallenge {
